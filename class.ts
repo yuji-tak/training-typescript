@@ -15,7 +15,7 @@ class Teacher extends Person1 {
     super(name, age)
   }
   sayHi() {
-    console.log(`hello ${ this.name }. im ${ this.age } years old`);
+    console.log(`hello ${ this.name }. im ${ this.age } years old. i teach ${ this.subject }`);
   }
 }
 
