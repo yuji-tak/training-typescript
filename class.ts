@@ -1,4 +1,5 @@
-class Person1 {
+// abstract classはインスタンス化できない
+abstract class Person1 {
   // static property
   static species = 'Homo sapiens';
   // static method
@@ -9,16 +10,20 @@ class Person1 {
 
   constructor(readonly name: string, protected age: number) {
   }
-
   increment() {
     return this.age += 1;
   }
   sayHi(this: Person1) {
     console.log(`hello ${ this.name }. im ${ this.age } years old`);
+    this.explainJob();
   }
+  abstract explainJob(): void;
 }
 
 class Teacher extends Person1 {
+  explainJob() {
+    console.log(`i teach ${ this.subject }`);
+  }
   // get accessor
   get subject() {
     if (!this._subject) {
@@ -33,11 +38,7 @@ class Teacher extends Person1 {
   constructor(name: string, age: number, private _subject: string) {
     super(name, age)
   }
-  sayHi() {
-    console.log(`hello ${ this.name }. im ${ this.age } years old. i teach ${ this._subject }`);
-  }
 }
 
-console.log(Person1.species);
-console.log(Person1.isAdult(18));
-console.log(Person1.isAdult(20));
+const teacher = new Teacher('yuji', 32, 'Math');
+teacher.sayHi();
