@@ -21,6 +21,8 @@ abstract class Person1 {
 }
 
 class Teacher extends Person1 {
+  // staticをつけることで、staticメソッドの中で呼び出せる
+  private static instance: Teacher;
   explainJob() {
     console.log(`i teach ${ this.subject }`);
   }
@@ -35,10 +37,20 @@ class Teacher extends Person1 {
   set subject(value) {
     this._subject = value;
   }
-  constructor(name: string, age: number, private _subject: string) {
+  private constructor(name: string, age: number, private _subject: string) {
     super(name, age)
+  }
+  static getInstance() {
+    // Teacherインスタンスに値があれば、そのままのインスタンスを返す
+    if (Teacher.instance) return Teacher.instance;
+    // Teacherのインスタンス化は下記の処理の一度きりという明示的な書き方ができる
+    Teacher.instance = new Teacher('yuji', 32, 'Math');
+    return Teacher.instance;
   }
 }
 
-const teacher = new Teacher('yuji', 32, 'Math');
-teacher.sayHi();
+const teacher = Teacher.getInstance();
+const teacher2 = Teacher.getInstance();
+console.log(teacher === teacher2);
+
+// シングルトンパターン：classから一つしかインスタンスを作らない
