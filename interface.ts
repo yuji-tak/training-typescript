@@ -5,13 +5,12 @@ interface Human {
   sayHi(msg: string): void;
 }
 
-const human: Human = {
-  name: 'yuji',
-  age: 32,
-  sayHi(msg: string) {
-    console.log(msg);
+class Developer implements Human {
+  constructor(public name: string, public age: number) {}
+  sayHi(msg2: string) {
+    console.log(msg2);
   }
 }
-console.log(human.sayHi('hi'));
 
-let developer: Human;
+const test = new Developer('yuji', 32);
+test.sayHi('hi');

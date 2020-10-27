@@ -1,10 +1,13 @@
 "use strict";
-var human = {
-    name: 'yuji',
-    age: 32,
-    sayHi: function (msg) {
-        console.log(msg);
+var Developer = /** @class */ (function () {
+    function Developer(name, age) {
+        this.name = name;
+        this.age = age;
     }
-};
-console.log(human.sayHi('hi'));
-var developer;
+    Developer.prototype.sayHi = function (msg2) {
+        console.log(msg2);
+    };
+    return Developer;
+}());
+var test = new Developer('yuji', 32);
+test.sayHi('hi');
