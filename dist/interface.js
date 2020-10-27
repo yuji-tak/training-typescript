@@ -1,5 +1,6 @@
 "use strict";
 var Developer = /** @class */ (function () {
+    // ここではinterfaceで指定したreadonlyは無視できる
     function Developer(name, age, experience) {
         this.name = name;
         this.age = age;

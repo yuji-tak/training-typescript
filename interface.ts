@@ -1,11 +1,12 @@
 // オブジェクトのみに使用できるtypeエイリアス
 interface Human {
-  name: string;
+  readonly name: string;
   age: number;
   sayHi(msg: string): void;
 }
 
 class Developer implements Human {
+  // ここではinterfaceで指定したreadonlyは無視できる
   constructor(public name: string, public age: number, public experience: number) {}
   sayHi(msg2: string) {
     console.log(msg2);
