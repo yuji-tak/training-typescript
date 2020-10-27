@@ -1,6 +1,8 @@
 // オブジェクトのみに使用できるtypeエイリアス
-interface Human {
-  readonly name: string;
+interface Nameable {
+  name: string;
+}
+interface Human extends Nameable {
   age: number;
   sayHi(msg: string): void;
 }
@@ -17,7 +19,7 @@ const tmpDeveloper = {
   name: 'yuji',
   age: 32,
   experience: 3,
-  sayHi(msg: string): void {
+  sayHi(msg: string) {
     console.log(msg);
   }
 }
