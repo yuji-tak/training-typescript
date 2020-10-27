@@ -1,5 +1,4 @@
-function copy<T>(value: T): T {
+function copy<T extends { age: number }>(value: T): T {
   return value;
 }
-console.log(copy<string>('hello'));
-console.log(copy({ name: 'yuji' }));
+console.log(copy({ age: 32 }));
