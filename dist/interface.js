@@ -1,13 +1,22 @@
 "use strict";
 var Developer = /** @class */ (function () {
-    function Developer(name, age) {
+    function Developer(name, age, experience) {
         this.name = name;
         this.age = age;
+        this.experience = experience;
     }
     Developer.prototype.sayHi = function (msg2) {
         console.log(msg2);
     };
     return Developer;
 }());
-var test = new Developer('yuji', 32);
-test.sayHi('hi');
+var tmpDeveloper = {
+    name: 'yuji',
+    age: 32,
+    experience: 3,
+    sayHi: function (msg) {
+        console.log(msg);
+    }
+};
+var test = tmpDeveloper;
+test.sayHi('here');
