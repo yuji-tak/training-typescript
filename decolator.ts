@@ -1,10 +1,12 @@
-function Logging(constructor: Function) {
-  console.log('Logging...');
-  console.log(constructor);
+function Logging(message: string) {
+  return function (constructor: Function) {
+    console.log(message);
+    console.log(constructor);
+  }
 }
 
 // デコレータはclassの定義時に実行されている
-@Logging
+@Logging('Logging...')
 class User {
   name = 'yuji';
   // インスタンス化するとこのconstructor()が実行されてconsole.logが実行される
