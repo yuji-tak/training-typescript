@@ -2,6 +2,23 @@
 var Score = /** @class */ (function () {
     function Score() {
     }
+    Object.defineProperty(Score.prototype, "totalScore", {
+        get: function () {
+            var foods = Foods.getInstance();
+            return foods.activeElementsScore.reduce(function (total, score) { return total + score; }, 0);
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Score.prototype.render = function () {
+        document.querySelector('.score__number').textContent = String(this.totalScore);
+    };
+    Score.getInstance = function () {
+        if (!Score.instance) {
+            Score.instance = new Score();
+        }
+        return Score.instance;
+    };
     return Score;
 }());
 var Food = /** @class */ (function () {
@@ -12,6 +29,8 @@ var Food = /** @class */ (function () {
     }
     Food.prototype.clickEventHandler = function () {
         this.element.classList.toggle('food--active');
+        var score = Score.getInstance();
+        score.render();
     };
     return Food;
 }());
@@ -54,6 +73,12 @@ var Foods = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Foods.getInstance = function () {
+        if (!Foods.instance) {
+            Foods.instance = new Foods();
+        }
+        return Foods.instance;
+    };
     return Foods;
 }());
-var foods = new Foods();
+var foods = Foods.getInstance();
